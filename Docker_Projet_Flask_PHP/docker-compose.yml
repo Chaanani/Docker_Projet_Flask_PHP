@@ -1,0 +1,28 @@
+services:
+  webapp.student_list:
+    image: php:apache
+    container_name: webapp_student_list
+    depends_on:
+      - student_api
+    ports:
+        - "8082:80"
+    volumes:
+        - ./website/:/var/www/html
+    environment:
+        - USERNAME=toto
+        - PASSWORD=python
+    networks:
+      - student_network
+
+  student_api:
+    image: api_student:1
+    container_name: student_api
+    volumes:
+      - './simple_api/:/data/'
+    networks:
+      - student_network
+
+networks:
+  student_network:
+    name: student_network
+    driver: bridge

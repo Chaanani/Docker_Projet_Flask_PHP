@@ -1,0 +1,18 @@
+# Utiliser une image de base avec Python
+FROM python:3.9
+
+# Mainteneur du projet
+LABEL maintainer="Youness Chaanani"
+RUN apt-get update -y && \
+    apt-get install -y \
+    python3-dev \
+    libsasl2-dev \
+    libldap2-dev \
+    libssl-dev
+COPY requirements.txt /
+RUN pip install -r requirements.txt
+COPY student_age.py /
+VOLUME ["/data"]
+EXPOSE 5000
+
+CMD ["python", "./student_age.py"]
