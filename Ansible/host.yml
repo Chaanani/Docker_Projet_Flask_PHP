@@ -1,0 +1,9 @@
+all:
+  children:
+    prod:
+      hosts:
+        clients1:
+    staging:
+      hosts:
+        cleint2:
+     
